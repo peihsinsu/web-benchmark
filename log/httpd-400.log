@@ -1,0 +1,19 @@
+Start web server....
+docker run -d --name=web -v `pwd`/data:/usr/local/apache2/htdocs -p 80:80 httpd
+4c6d1e031f1f59743261ca03fae711f044dbb02a7ad67d93a243a79d256fa416
+
+Fire vegeta....
+echo "GET http://localhost/index.html" | vegeta attack -duration=60s -rate 400  | tee results.bin | vegeta report
+Requests      [total, rate]            24000, 400.02
+Duration      [total, attack, wait]    59.99907s, 59.997499s, 1.571ms
+Latencies     [mean, 50, 95, 99, max]  1.743648ms, 1.667ms, 2.137ms, 2.736ms, 24.551ms
+Bytes In      [total, mean]            288000, 12.00
+Bytes Out     [total, mean]            0, 0.00
+Success       [ratio]                  100.00%
+Status Codes  [code:count]             200:24000  
+Error Set:
+
+Kill web server....
+docker rm -f web
+web
+
