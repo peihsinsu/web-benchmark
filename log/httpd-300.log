@@ -1,17 +1,19 @@
 Start web server....
-docker run -d --name=web -v `pwd`/data:/usr/local/apache2/htdocs -p 80:80 httpd
-94535efd4b9f3b6dcd78c7a5d5945e0f1e8ed70745a7752fb05d01edc194e703
+docker run -d --name=web -v `pwd`/data:/usr/local/apache2/htdocs -v `pwd`/dockerfile/httpd/httpd-mpm.conf:/usr/local/apache2/conf/extra/httpd-mpm.conf -p 80:80 httpd
+99f6e22298282988745048277feaec0d2a1e05208d049208b45d202e00a73da6
 
 Fire vegeta....
-echo "GET http://localhost/index.html" | vegeta attack -duration=60s -rate 300  | tee results.bin | vegeta report
+echo "GET http://localhost/pic.png" | vegeta attack -duration=60s -rate 300  | tee results.bin | vegeta report
 Requests      [total, rate]            18000, 300.02
-Duration      [total, attack, wait]    59.998575s, 59.996659667s, 1.915333ms
-Latencies     [mean, 50, 95, 99, max]  2.127124ms, 2.077102ms, 2.598697ms, 3.157212ms, 21.472345ms
-Bytes In      [total, mean]            216000, 12.00
+Duration      [total, attack, wait]    1m1.608136s, 59.996659667s, 1.611476333s
+Latencies     [mean, 50, 95, 99, max]  281.98586ms, 2.17045ms, 2.837818ms, 1.046627731s, 30.00432549s
+Bytes In      [total, mean]            161103555, 8950.20
 Bytes Out     [total, mean]            0, 0.00
-Success       [ratio]                  100.00%
-Status Codes  [code:count]             200:18000  
+Success       [ratio]                  99.08%
+Status Codes  [code:count]             0:165  200:17835  
 Error Set:
+Get http://localhost/pic.png: EOF
+Get http://localhost/pic.png: net/http: timeout awaiting response headers
 
 Kill web server....
 docker rm -f web

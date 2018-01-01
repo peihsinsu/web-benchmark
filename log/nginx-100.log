@@ -1,13 +1,13 @@
 Start web server....
-docker run -d --name=web -v `pwd`/data:/usr/share/nginx/html -p 80:80 nginx 
-26f51abce06f65ed4a898f1d24ec603dcbd915d3635980eba90f483edd972b8d
+docker run -d --name=web -v `pwd`/data:/usr/share/nginx/html -v `pwd`/dockerfile/nginx/nginx.conf:/etc/nginx/nginx.conf -p 80:80 nginx 
+daadfc94da1f8ed81b331d0f1a71d316e91258c59e2eee576002b34bc22e03cf
 
 Fire vegeta....
-echo "GET http://localhost/index.html" | vegeta attack -duration=60s -rate 100  | tee results.bin | vegeta report
+echo "GET http://localhost/pic.png" | vegeta attack -duration=60s -rate 100  | tee results.bin | vegeta report
 Requests      [total, rate]            6000, 100.02
-Duration      [total, attack, wait]    59.995086s, 59.989999s, 5.087ms
-Latencies     [mean, 50, 95, 99, max]  3.963141ms, 3.983ms, 5.564ms, 6.076ms, 9.217ms
-Bytes In      [total, mean]            72000, 12.00
+Duration      [total, attack, wait]    59.99394s, 59.989999s, 3.941ms
+Latencies     [mean, 50, 95, 99, max]  4.343674ms, 4.409ms, 5.768ms, 6.305ms, 59.141ms
+Bytes In      [total, mean]            54198000, 9033.00
 Bytes Out     [total, mean]            0, 0.00
 Success       [ratio]                  100.00%
 Status Codes  [code:count]             200:6000  

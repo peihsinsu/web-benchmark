@@ -1,0 +1,26 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: vegeta
+  labels:
+    app: vegeta
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: vegeta 
+  template:
+    metadata:
+      labels:
+        app: vegeta
+    spec:
+      containers:
+      - name: vegeta
+        image: peihsinsu/vegeta
+        env:
+        - name: URL
+          value: "simon-test-01"
+        - name: DURATION
+          value: "30s"
+        - name: RATE
+          value: "200"

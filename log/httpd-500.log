@@ -1,13 +1,13 @@
 Start web server....
-docker run -d --name=web -v `pwd`/data:/usr/local/apache2/htdocs -p 80:80 httpd
-4251995d20ba1bb7723c44e220a0351ca2d8b54bf2c18f7eebc9da6573dd6c28
+docker run -d --name=web -v `pwd`/data:/usr/local/apache2/htdocs -v `pwd`/dockerfile/httpd/httpd-mpm.conf:/usr/local/apache2/conf/extra/httpd-mpm.conf -p 80:80 httpd
+28e697223e4b651b394bcfa5a0db37e7158de8fedc0476cf7dbdcd45261abaf7
 
 Fire vegeta....
-echo "GET http://localhost/index.html" | vegeta attack -duration=60s -rate 500  | tee results.bin | vegeta report
+echo "GET http://localhost/pic.png" | vegeta attack -duration=60s -rate 500  | tee results.bin | vegeta report
 Requests      [total, rate]            30000, 500.02
-Duration      [total, attack, wait]    59.999796s, 59.997999s, 1.797ms
-Latencies     [mean, 50, 95, 99, max]  1.56111ms, 1.489ms, 1.903ms, 2.52ms, 29.182ms
-Bytes In      [total, mean]            360000, 12.00
+Duration      [total, attack, wait]    59.999425s, 59.997999s, 1.426ms
+Latencies     [mean, 50, 95, 99, max]  2.034468ms, 1.608ms, 2.976ms, 14.677ms, 85.595ms
+Bytes In      [total, mean]            270990000, 9033.00
 Bytes Out     [total, mean]            0, 0.00
 Success       [ratio]                  100.00%
 Status Codes  [code:count]             200:30000  
