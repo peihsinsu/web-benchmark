@@ -5,7 +5,7 @@ metadata:
   labels:
     app: vegeta
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: vegeta 
@@ -19,7 +19,7 @@ spec:
         image: peihsinsu/vegeta
         env:
         - name: URL
-          value: "simon-test-01"
+          value: "http://35.185.139.252/index.html"
         - name: DURATION
           value: "30s"
         - name: RATE
