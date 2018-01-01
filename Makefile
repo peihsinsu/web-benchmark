@@ -15,7 +15,7 @@ push-httpd: build-httpd
 	docker push ${HTTPD}
 nginx:
 	@echo "Start web server...."
-	docker run -d --name=web -v `pwd`/nginx-log:/log -p 80:80 ${NGINX} 
+	docker run -d --name=web -v `pwd`/nginx-log:/log -p 80:80 -p 7890:7890 ${NGINX} 
 	@echo 
 httpd:
 	@echo "Start web server...."

@@ -1,16 +1,16 @@
 Start web server....
-docker run -d --name=web -v `pwd`/data:/usr/share/nginx/html -v `pwd`/dockerfile/nginx/nginx.conf:/etc/nginx/nginx.conf -p 80:80 nginx 
-21edaf9fc78d3ffb68a78cbaa2b1122370672c4d9ed83f2a65d884a2adcb71d7
+docker run -d --name=web -v `pwd`/nginx-log:/log -p 80:80 -p 7890:7890 peihsinsu/nginx 
+9da8712263845d0420682cf383f4199e5796168acf852b20666834e686280966
 
 Fire vegeta....
-echo "GET http://localhost/pic.png" | vegeta attack -duration=60s -rate 300  | tee results.bin | vegeta report
-Requests      [total, rate]            18000, 300.02
-Duration      [total, attack, wait]    59.998747s, 59.996658667s, 2.088333ms
-Latencies     [mean, 50, 95, 99, max]  2.096917ms, 2.055763ms, 2.556681ms, 3.083154ms, 25.229433ms
-Bytes In      [total, mean]            162594000, 9033.00
+echo "GET http://localhost/pic.png" | vegeta attack -duration=30s -rate 300  | tee results.bin | vegeta report
+Requests      [total, rate]            9000, 300.03
+Duration      [total, attack, wait]    29.998389s, 29.996660667s, 1.728333ms
+Latencies     [mean, 50, 95, 99, max]  1.504793ms, 1.480873ms, 2.029493ms, 2.568209ms, 55.504667ms
+Bytes In      [total, mean]            81297000, 9033.00
 Bytes Out     [total, mean]            0, 0.00
 Success       [ratio]                  100.00%
-Status Codes  [code:count]             200:18000  
+Status Codes  [code:count]             200:9000  
 Error Set:
 
 Kill web server....
