@@ -1,2 +1,4 @@
 result.bin
 log/*.log
+*.bin
+*.swap
